@@ -21,31 +21,46 @@ class TodoListItem extends StatelessWidget {
      onTap: (){
        onClickCheckBox();
      },
-      child: AbsorbPointer(absorbing: true,
-        child: Row(
-          children: [
-            Checkbox(
-              value: checkBoxStatus,
-              onChanged: (value) {
-              },
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
+      child: Card(
+
+        color: Colors.white,
+        child: AbsorbPointer(absorbing: true,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 8.0,bottom: 8),
+            child: Row(
               children: [
-                Text(
-                  text,
-                  style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold),
+                Checkbox(
+                  value: checkBoxStatus,
+                  onChanged: (value) {
+                  },
                 ),
-                Text.rich(TextSpan(
-                  children: [TextSpan(text: "Date:\t",
-                  style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold),),
-                    TextSpan(text: "${date}", style: TextStyle(fontSize: 10,))],))
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      text,
+                      style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text.rich(TextSpan(
+                      children: [TextSpan(text: "Date:\t",
+                      style: TextStyle(fontSize: 12,fontWeight: FontWeight.bold),),
+                        TextSpan(text: "${date}", style: TextStyle(fontSize: 10,))],)),
+                    if(checkBoxStatus)
+                    Row(children: [
+                      Icon(Icons.check_circle,color: Colors.green,size: 12,),
+                      Text("\tTask Completed",style: TextStyle(fontSize: 12),)
+
+
+                    ],)
+
+                  ],
+                )
               ],
-            )
-          ],
+            ),
+          ),
         ),
       ),
     );
